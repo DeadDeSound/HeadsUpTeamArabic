@@ -2,13 +2,22 @@ package com.example.nezarsaleh.headsup1;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class Main2Activity extends FragmentActivity implements View.OnClickListener {
-
 
     RelativeLayout Home_Realative;
     RelativeLayout All_Relative;
@@ -17,7 +26,8 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
     RelativeLayout Custom_Relative;
     RelativeLayout Settings_Relative;
     RelativeLayout Store_Realtive;
-
+    GridView Decks_Grid;
+    ArrayList imagePath = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +41,13 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
         Custom_Relative = (RelativeLayout) findViewById(R.id.Custom_Relative);
         Settings_Relative = (RelativeLayout) findViewById(R.id.Settings_Relative);
         Store_Realtive = (RelativeLayout) findViewById(R.id.Store_Realtive);
+        Decks_Grid = (GridView) findViewById(R.id.dick_grid);
 
-
+        new loadingData().execute();
 
         Intent Intent = getIntent();
 
         All_Relative.setBackgroundColor(Color.WHITE);
-
 
         All_Relative.setOnClickListener(this);
         Favorites_Relative.setOnClickListener(this);
@@ -54,6 +64,41 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
 
 
 
+    }
+
+    private class loadingData extends AsyncTask {
+
+        JSONArray results;
+
+        @Override
+        protected void onPostExecute(Object o) {
+            if (imagePath == null){
+                Toast.makeText(getBaseContext(), "No Data", Toast.LENGTH_SHORT).show();
+            }else {
+                Decks_Grid.setAdapter(new ImageAdapter(Main2Activity.this, imagePath));
+            }
+        }
+
+        @Override
+        protected Object doInBackground(Object[] params) {
+            Core core = new Core(Main2Activity.this);
+            try {
+                String data = core.getMovies().toString();
+                if (data != null){
+                    results = core.getMovies().getJSONArray("results");
+                    for (int i = 0; i < results.length();i++){
+                        JSONObject movie = results.getJSONObject(i);
+                        String posterPath = movie.getString("backdrop_path");
+                        Log.d("posterPath", posterPath);
+                        imagePath.add(posterPath);
+                    }
+                    Log.d("data", data);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
     @Override
