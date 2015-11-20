@@ -16,6 +16,7 @@
             android:verticalSpacing="0dp"
             android:horizontalSpacing="0dp"
             android:layout_toLeftOf="@+id/Menu_Scroll"
+            android:layout_toStartOf="@+id/Menu_Scroll"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             />
