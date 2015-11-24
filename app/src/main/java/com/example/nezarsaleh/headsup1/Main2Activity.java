@@ -59,6 +59,7 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent in = new Intent(getApplicationContext(),QuickPlay.class);
+                in.putExtra("GameName",categories.get(position).catName);
                 startActivity(in);
             }
         });
