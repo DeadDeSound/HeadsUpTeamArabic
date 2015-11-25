@@ -16,6 +16,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Main2Activity extends FragmentActivity implements View.OnClickListener {
@@ -47,12 +52,13 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
         final Intent Intent = getIntent();
 
         Decks_Grid.setAdapter(new ImageAdapter(Main2Activity.this, categories));
-        for (int i = 0; i<= 11;i++) {
-            CategoryDataModel cat = new CategoryDataModel();
-            cat.setCatImageResource(R.drawable.films);
-            cat.setCatName("Films");
-            categories.add(cat);
-        }
+
+        categories.add(new CategoryDataModel(R.drawable.films, "Movies"));
+        categories.add(new CategoryDataModel(R.drawable.music,"Music"));
+        categories.add(new CategoryDataModel(R.drawable.emotion,"Emotions"));
+        categories.add(new CategoryDataModel(R.drawable.animals,"Animals"));
+        categories.add(new CategoryDataModel(R.drawable.fairytale,"Fairy Tales"));
+        categories.add(new CategoryDataModel(R.drawable.actor,"Character"));
 
 
         Decks_Grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {

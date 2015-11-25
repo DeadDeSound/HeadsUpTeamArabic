@@ -8,6 +8,15 @@ public class CategoryDataModel {
     int catImageResource;
     String catName;
 
+    public CategoryDataModel() {
+    }
+
+    public CategoryDataModel(int catImageResource, String catName) {
+
+        this.catImageResource = catImageResource;
+        this.catName = catName;
+    }
+
     public int getCatImageResource() {
         return catImageResource;
     }

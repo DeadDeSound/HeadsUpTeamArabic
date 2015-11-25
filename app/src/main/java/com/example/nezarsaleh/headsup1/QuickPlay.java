@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -27,7 +26,6 @@ public class QuickPlay extends AppCompatActivity{
 
     RelativeLayout main_relative;
     Boolean result_shown = false;
-    String gameName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +33,6 @@ public class QuickPlay extends AppCompatActivity{
         setContentView(R.layout.activity_quick_play);
 
         Intent in = getIntent();
-
 
         correct = (Button) findViewById(R.id.correct_btn);
         pass = (Button) findViewById(R.id.pass_btn);
@@ -110,13 +107,10 @@ public class QuickPlay extends AppCompatActivity{
 
     private String sayHello() {
         // Select a random hello.
-        switch (gameName){
-        case "Films": int helloLength = HELLOS.length;
+        int helloLength = HELLOS.length;
             main_relative.setBackgroundResource(android.R.color.holo_blue_light);
             result_shown = false;
             return HELLOS[RANDOM.nextInt(helloLength)];
-        }
-        return "Error";
     }
 
 }
