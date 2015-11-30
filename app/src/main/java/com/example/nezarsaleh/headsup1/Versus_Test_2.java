@@ -18,7 +18,7 @@ public class Versus_Test_2 extends AppCompatActivity {
 
         FragmentManager fragmentManager =  getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        First_Fr_1 first_fr_1 =  new First_Fr_1();
+        Fragment_Favorites first_fr_1 =  new Fragment_Favorites();
         fragmentTransaction.add(R.id.Fragment_Container_1,first_fr_1);
         fragmentTransaction.commit();
 
@@ -29,7 +29,7 @@ public class Versus_Test_2 extends AppCompatActivity {
             public void onClick(View v) {
                 FragmentManager fragmentManager1 = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
-                Second_Fr_2  second_fr_2 = new Second_Fr_2();
+                Fragment_New second_fr_2 = new Fragment_New();
                 fragmentTransaction1.replace(R.id.Fragment_Container_1,second_fr_2);
                 fragmentTransaction1.commit();
             }

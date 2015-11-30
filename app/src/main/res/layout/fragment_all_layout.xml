@@ -4,15 +4,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <GridView
+        android:id="@+id/dick_grid"
+        android:layout_margin="15dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="All Page"
-        android:textColor="@color/colorPrimary"
-        android:textSize="40sp"
-
+        android:gravity="center"
+        android:verticalSpacing="5dp"
+        android:columnWidth="150dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="spacingWidth"
+        android:horizontalSpacing="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         />
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:text="All Page"-->
+        <!--android:textColor="@color/colorPrimary"-->
+        <!--android:textSize="40sp"-->
+
+        <!--/>-->
 
 </RelativeLayout>

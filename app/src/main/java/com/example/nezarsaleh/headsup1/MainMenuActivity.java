@@ -1,74 +1,38 @@
 package com.example.nezarsaleh.headsup1;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+public class MainMenuActivity extends FragmentActivity implements View.OnClickListener {
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-
-public class Main2Activity extends FragmentActivity implements View.OnClickListener {
-
-    RelativeLayout Home_Realative;
+    RelativeLayout Home_Relative;
     RelativeLayout All_Relative;
     RelativeLayout Favorites_Relative;
     RelativeLayout New_Relative;
     RelativeLayout Custom_Relative;
     RelativeLayout Settings_Relative;
-    RelativeLayout Store_Realtive;
-    GridView Decks_Grid;
-    ArrayList<CategoryDataModel> categories = new ArrayList();
+    RelativeLayout Store_Relative;
+
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        Home_Realative = (RelativeLayout) findViewById(R.id.Home_Realative);
+        Home_Relative = (RelativeLayout) findViewById(R.id.Home_Realative);
         All_Relative = (RelativeLayout) findViewById(R.id.All_Relative);
         Favorites_Relative = (RelativeLayout) findViewById(R.id.Favorites_Relative);
         New_Relative = (RelativeLayout) findViewById(R.id.New_Relative);
         Custom_Relative = (RelativeLayout) findViewById(R.id.Custom_Relative);
         Settings_Relative = (RelativeLayout) findViewById(R.id.Settings_Relative);
-        Store_Realtive = (RelativeLayout) findViewById(R.id.Store_Realtive);
-        Decks_Grid = (GridView) findViewById(R.id.dick_grid);
-
-        final Intent Intent = getIntent();
-
-        Decks_Grid.setAdapter(new ImageAdapter(Main2Activity.this, categories));
-
-        categories.add(new CategoryDataModel(R.drawable.films, "Movies"));
-        categories.add(new CategoryDataModel(R.drawable.music,"Music"));
-        categories.add(new CategoryDataModel(R.drawable.emotion,"Emotions"));
-        categories.add(new CategoryDataModel(R.drawable.animals,"Animals"));
-        categories.add(new CategoryDataModel(R.drawable.fairytale,"Fairy Tales"));
-        categories.add(new CategoryDataModel(R.drawable.actor,"Character"));
-
-
-        Decks_Grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent in = new Intent(getApplicationContext(),QuickPlay.class);
-                in.putExtra("GameName",categories.get(position).catName);
-                startActivity(in);
-            }
-        });
+        Store_Relative = (RelativeLayout) findViewById(R.id.Store_Realtive);
 
         All_Relative.setBackgroundColor(Color.WHITE);
 
@@ -78,9 +42,20 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
         New_Relative.setOnClickListener(this);
         Custom_Relative.setOnClickListener(this);
         Settings_Relative.setOnClickListener(this);
-        Store_Realtive.setOnClickListener(this);
-        Home_Realative.setOnClickListener(this);
+        Store_Relative.setOnClickListener(this);
+        Home_Relative.setOnClickListener(this);
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment_All fragment = new Fragment_All();
+        fragmentTransaction.replace(R.id.fragment, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -93,8 +68,14 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
             New_Relative.setBackgroundResource(R.color.menu_item_off);
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
-            Store_Realtive.setBackgroundResource(R.color.menu_item_off);
+            Store_Relative.setBackgroundResource(R.color.menu_item_off);
 
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment_Favorites fragment = new Fragment_Favorites();
+            fragmentTransaction.replace(R.id.fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
 
 
@@ -106,10 +87,16 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
             New_Relative.setBackgroundResource(R.color.menu_item_off);
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
-            Store_Realtive.setBackgroundResource(R.color.menu_item_off);
+            Store_Relative.setBackgroundResource(R.color.menu_item_off);
+
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment_All fragment = new Fragment_All();
+            fragmentTransaction.replace(R.id.fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
         }
-
 
         if (v == New_Relative) {
             New_Relative.setBackgroundResource(R.color.white);
@@ -118,9 +105,14 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
-            Store_Realtive.setBackgroundResource(R.color.menu_item_off);
+            Store_Relative.setBackgroundResource(R.color.menu_item_off);
 
-
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment_New fragment = new Fragment_New();
+            fragmentTransaction.replace(R.id.fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
 
         if (v == Custom_Relative) {
@@ -130,11 +122,8 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
             All_Relative.setBackgroundResource(R.color.menu_item_off);
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
-            Store_Realtive.setBackgroundResource(R.color.menu_item_off);
-
-
+            Store_Relative.setBackgroundResource(R.color.menu_item_off);
         }
-
 
         if (v==Settings_Relative){
             Settings_Relative.setBackgroundResource(R.color.white);
@@ -143,31 +132,21 @@ public class Main2Activity extends FragmentActivity implements View.OnClickListe
             New_Relative.setBackgroundResource(R.color.menu_item_off);
             All_Relative.setBackgroundResource(R.color.menu_item_off);
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
-            Store_Realtive.setBackgroundResource(R.color.menu_item_off);
-
-
-
+            Store_Relative.setBackgroundResource(R.color.menu_item_off);
         }
 
-        if (v==Store_Realtive){
-            Store_Realtive.setBackgroundResource(R.color.white);
+        if (v== Store_Relative){
+            Store_Relative.setBackgroundResource(R.color.white);
 
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
             New_Relative.setBackgroundResource(R.color.menu_item_off);
             All_Relative.setBackgroundResource(R.color.menu_item_off);
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
-
-
-
-
         }
 
-
-        if (v==Home_Realative){
+        if (v== Home_Relative){
             finish();
         }
-
-
     }
 }

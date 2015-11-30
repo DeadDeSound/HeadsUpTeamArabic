@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 /**
  * Created by Nezar Saleh on 11/20/2015.
  */
-public class Second_Fr_2 extends Fragment {
+public class Fragment_Favorites extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.second_fr_2,container,false);
+        return inflater.inflate(R.layout.first_fr_1,container,false);
     }
 }

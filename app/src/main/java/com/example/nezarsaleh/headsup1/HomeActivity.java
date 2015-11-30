@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     RelativeLayout Quick_Play_Relative;
     RelativeLayout versus_relative;
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         Quick_Play_Relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(),Main2Activity.class);
+                Intent intent = new Intent(getBaseContext(),MainMenuActivity.class);
                 startActivity(intent);
             }
         });
