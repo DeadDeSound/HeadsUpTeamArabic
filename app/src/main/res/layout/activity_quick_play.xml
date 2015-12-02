@@ -7,28 +7,6 @@
     tools:context="com.example.nezarsaleh.headsup1.QuickPlay">
 
 
-    <RelativeLayout
-        android:id="@+id/intro"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccent">
-
-        <TextView
-            android:id="@+id/intro_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Result"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@color/white"
-            android:textSize="50sp"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
-
     <TextView
         android:id="@+id/timer_tv"
         android:layout_width="match_parent"
@@ -72,6 +50,28 @@
             android:background="@android:color/transparent" />
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:id="@+id/intro_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Result"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@color/white"
+            android:textSize="50sp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

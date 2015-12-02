@@ -1,12 +1,17 @@
 package com.example.nezarsaleh.headsup1;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class MainMenuActivity extends FragmentActivity implements View.OnClickListener {
 
@@ -106,13 +111,6 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
-
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment_New fragment = new Fragment_New();
-            fragmentTransaction.replace(R.id.fragment, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
         }
 
         if (v == Custom_Relative) {
@@ -123,6 +121,13 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
+
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            Fragment_Custom fragment = new Fragment_Custom();
+            fragmentTransaction.replace(R.id.fragment, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         }
 
         if (v==Settings_Relative){

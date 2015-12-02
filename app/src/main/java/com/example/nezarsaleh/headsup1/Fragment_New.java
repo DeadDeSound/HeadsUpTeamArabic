@@ -2,26 +2,42 @@ package com.example.nezarsaleh.headsup1;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class Fragment_New extends Fragment {
 
-    ImageView Actor,Animals,Emotion,Fairytale,Films,Music;
-    EditText NameEdit,DataEdit;
+//    ImageView Actor,Animals,Emotion,Fairytale,Films,Music;
+    EditText DataEdit;
+    TextView NameText;
     ListView DataList;
     Button DataSubmit,Done;
     ArrayList<String> Data = new ArrayList<>();
     DatabaseHelper MyDB;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
+    public void setBoardName(String boardName) {
+        BoardName = boardName;
+    }
+
+    String BoardName;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,16 +45,18 @@ public class Fragment_New extends Fragment {
 
         MyDB = new DatabaseHelper(getActivity());
 
-        Actor = (ImageView) view.findViewById(R.id.actor);
-        Animals = (ImageView) view.findViewById(R.id.animals);
-        Emotion = (ImageView) view.findViewById(R.id.emotion);
-        Fairytale = (ImageView) view.findViewById(R.id.fairytale);
-        Films = (ImageView) view.findViewById(R.id.films);
-        Music = (ImageView) view.findViewById(R.id.music);
-
-        NameEdit = (EditText) view.findViewById(R.id.editText);
+//        Actor = (ImageView) view.findViewById(R.id.actor);
+//        Animals = (ImageView) view.findViewById(R.id.animals);
+//        Emotion = (ImageView) view.findViewById(R.id.emotion);
+//        Fairytale = (ImageView) view.findViewById(R.id.fairytale);
+//        Films = (ImageView) view.findViewById(R.id.films);
+//        Music = (ImageView) view.findViewById(R.id.music);
+        NameText = (TextView) view.findViewById(R.id.textView);
+        if (BoardName != null){
+            NameText.setText("New Board : " + BoardName);
+        }
+//        NameEdit = (EditText) view.findViewById(R.id.editText);
         DataEdit = (EditText) view.findViewById(R.id.editText2);
-
         DataList = (ListView) view.findViewById(R.id.list_view);
 
         DataSubmit = (Button) view.findViewById(R.id.submitData);
@@ -63,14 +81,25 @@ public class Fragment_New extends Fragment {
         Done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (NameEdit.getText() != null && Data.size() !=0){
-                    for (String item : Data){
-                        Boolean result = MyDB.insertItems(item, NameEdit.getText().toString(), 0);
-                        if (result)
-                            Toast.makeText(getActivity(), "Data Added Successfully", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(getActivity(), "Data Adding Failed", Toast.LENGTH_SHORT).show();
-                    }
+                if (BoardName != null && Data.size() !=0){
+                    int CatID = (int) MyDB.insertCat(BoardName,R.drawable.card,0,1);
+                    if (CatID != -1) {
+                        for (String item : Data) {
+                            Boolean result = MyDB.insertItems(item, BoardName, CatID);
+                            if (result) {
+                                Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                                fragmentManager = getActivity().getSupportFragmentManager();
+                                fragmentTransaction = fragmentManager.beginTransaction();
+                                Fragment_Custom fragment = new Fragment_Custom();
+                                fragmentTransaction.replace(R.id.fragment, fragment);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }else {
+                                Toast.makeText(getActivity(), "Adding Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }else
+                        Toast.makeText(getActivity(), "Adding Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
