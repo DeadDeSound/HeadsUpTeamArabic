@@ -1,5 +1,6 @@
 package com.example.nezarsaleh.headsup1;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -92,8 +93,15 @@ public class Fragment_New extends Fragment {
                                 fragmentTransaction = fragmentManager.beginTransaction();
                                 Fragment_Custom fragment = new Fragment_Custom();
                                 fragmentTransaction.replace(R.id.fragment, fragment);
-                                fragmentTransaction.addToBackStack(null);
                                 fragmentTransaction.commit();
+                                SharedPreferences myPrefs = getActivity().getApplicationContext().getSharedPreferences("myPrefs", 0);
+                                SharedPreferences.Editor editor = myPrefs.edit();
+                                int Coins = myPrefs.getInt("Coins",-1);
+                                if (Coins != 0) {
+                                    editor.putInt("Coins", Coins - 10);
+                                    ((MainMenuActivity) getActivity()).updateCoins(Coins - 10);
+                                    editor.apply();
+                                }
                             }else {
                                 Toast.makeText(getActivity(), "Adding Failed", Toast.LENGTH_SHORT).show();
                             }

@@ -25,7 +25,7 @@ public class Fragment_Favorites extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.first_fr_1, container, false);
+        View view =  inflater.inflate(R.layout.fragment_favoirte, container, false);
         Decks_Grid = (GridView) view.findViewById(R.id.dick_grid);
         return view;
     }
@@ -35,7 +35,7 @@ public class Fragment_Favorites extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         databaseHelper = new DatabaseHelper(getActivity());
         categories.clear();
-        Decks_Grid.setAdapter(new ImageAdapter(getActivity(), categories));
+        Decks_Grid.setAdapter(new ImageAdapter(getActivity(), categories,1));
 
         Cursor res = databaseHelper.getAllCat();
         if (res.getCount() != 0){

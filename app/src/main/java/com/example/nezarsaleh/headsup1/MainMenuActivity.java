@@ -1,19 +1,20 @@
 package com.example.nezarsaleh.headsup1;
 
-import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
-public class MainMenuActivity extends FragmentActivity implements View.OnClickListener {
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+public class MainMenuActivity extends AppCompatActivity implements View.OnClickListener {
 
     RelativeLayout Home_Relative;
     RelativeLayout All_Relative;
@@ -23,8 +24,12 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
     RelativeLayout Settings_Relative;
     RelativeLayout Store_Relative;
 
+    TextView CoinsTxt;
+
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,8 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
         Settings_Relative = (RelativeLayout) findViewById(R.id.Settings_Relative);
         Store_Relative = (RelativeLayout) findViewById(R.id.Store_Realtive);
 
+        CoinsTxt = (TextView) findViewById(R.id.Coins);
+
         All_Relative.setBackgroundColor(Color.WHITE);
 
         All_Relative.setOnClickListener(this);
@@ -50,16 +57,36 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
         Store_Relative.setOnClickListener(this);
         Home_Relative.setOnClickListener(this);
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    public void updateCoins(int Coins) {
+        CoinsTxt = (TextView) findViewById(R.id.Coins);
+        CoinsTxt.setText("( " + Coins + " $ )");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", 0);
+        int Coins = pref.getInt("Coins", -1);
+        if (Coins != -1) {
+            CoinsTxt.setText("( " + Coins + " $ )");
+        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         Fragment_All fragment = new Fragment_All();
         fragmentTransaction.replace(R.id.fragment, fragment);
-        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
@@ -79,7 +106,6 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
             fragmentTransaction = fragmentManager.beginTransaction();
             Fragment_Favorites fragment = new Fragment_Favorites();
             fragmentTransaction.replace(R.id.fragment, fragment);
-            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
 
@@ -98,7 +124,6 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
             fragmentTransaction = fragmentManager.beginTransaction();
             Fragment_All fragment = new Fragment_All();
             fragmentTransaction.replace(R.id.fragment, fragment);
-            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
         }
@@ -126,11 +151,10 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
             fragmentTransaction = fragmentManager.beginTransaction();
             Fragment_Custom fragment = new Fragment_Custom();
             fragmentTransaction.replace(R.id.fragment, fragment);
-            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
 
-        if (v==Settings_Relative){
+        if (v == Settings_Relative) {
             Settings_Relative.setBackgroundResource(R.color.white);
 
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
@@ -140,7 +164,7 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
         }
 
-        if (v== Store_Relative){
+        if (v == Store_Relative) {
             Store_Relative.setBackgroundResource(R.color.white);
 
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
@@ -150,8 +174,9 @@ public class MainMenuActivity extends FragmentActivity implements View.OnClickLi
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
         }
 
-        if (v== Home_Relative){
+        if (v == Home_Relative) {
             finish();
         }
     }
+
 }

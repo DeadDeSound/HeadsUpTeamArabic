@@ -36,7 +36,7 @@ public class Fragment_All extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         databaseHelper = new DatabaseHelper(getActivity());
         categories.clear();
-        Decks_Grid.setAdapter(new ImageAdapter(getActivity(), categories));
+        Decks_Grid.setAdapter(new ImageAdapter(getActivity(), categories,0));
 
         Cursor res = databaseHelper.getAllCat();
         if (res.getCount() != 0){
@@ -57,15 +57,9 @@ public class Fragment_All extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                // Setting Dialog Title
                 alertDialog.setTitle("Get Ready");
-                // Setting Dialog Message
                 alertDialog.setMessage("This Board is " + categories.get(position).getCatName());
-                //alertDialog.setView(input);
-                // Setting Icon to Dialog
                 alertDialog.setIcon(R.drawable.card);
-
-                // Setting Positive "Yes" Button
                 alertDialog.setPositiveButton("YES",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -76,9 +70,7 @@ public class Fragment_All extends Fragment {
                                 startActivity(in);
                             }
                         });
-                // Showing Alert Message
                 alertDialog.show();
-
             }
         });
     }

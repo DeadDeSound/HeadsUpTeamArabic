@@ -38,6 +38,7 @@
 
 
                 <ImageView
+                    android:id="@+id/Coins_Im"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
@@ -46,6 +47,21 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:src="@drawable/howtoplay" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_toLeftOf="@+id/Coins_Im"
+                    android:layout_toStartOf="@+id/Coins_Im"
+                    android:id="@+id/Coins"
+                    android:text="Coins"
+                    android:textColor="@color/menu_color"
+
+                    />
 
 
             </RelativeLayout>

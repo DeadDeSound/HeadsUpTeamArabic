@@ -1,6 +1,7 @@
 package com.example.nezarsaleh.headsup1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -64,6 +65,13 @@ public class QuickPlay extends AppCompatActivity {
         public void onFinish() {
             intro_relative.setVisibility(View.VISIBLE);
             introText.setText("Time Out !! \n Correct :"+correctScore+"\n Pass :"+passScore);
+            SharedPreferences myPrefs = getApplicationContext().getSharedPreferences("myPrefs", 0);
+            SharedPreferences.Editor editor = myPrefs.edit();
+            int Coins = myPrefs.getInt("Coins",-1);
+            if (Coins != -1) {
+                editor.putInt("Coins", Coins + 10);
+                editor.apply();
+            }
             intro_relative.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -15,10 +15,12 @@ public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     LayoutInflater inflater;
     ArrayList<CategoryDataModel> cat;
+    int favFragment;
 
     // Constructor
-    public ImageAdapter(Context c, ArrayList<CategoryDataModel> cat){
+    public ImageAdapter(Context c, ArrayList<CategoryDataModel> cat,int favFragment){
         mContext = c;
+        this.favFragment = favFragment;
         this.cat = cat;
         inflater = LayoutInflater.from(mContext);
     }
@@ -72,15 +74,26 @@ public class ImageAdapter extends BaseAdapter {
                     int id = cat.get(position).getID();
                     Log.d("Fav ID", String.valueOf(id));
                     databaseHelper.updateFav(id, 1);
+                    cat.get(position).setFav(1);
                     fav.setImageResource(R.drawable.heart_red);
                 }else if (favIndicator == 1){
                     int id = cat.get(position).getID();
                     Log.d("Fav ID", String.valueOf(id));
                     databaseHelper.updateFav(id, 0);
+                    cat.get(position).setFav(0);
                     fav.setImageResource(R.drawable.heart_white);
+                    if (favFragment == 1) {
+                        cat.remove(position);
+                        updateResults(cat);
+                    }
                 }
             }
         });
         return v;
+    }
+
+    public void updateResults(ArrayList<CategoryDataModel> results) {
+        cat = results;
+        notifyDataSetChanged();
     }
 }
