@@ -136,26 +136,18 @@ public class Fragment_Custom extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                // Setting Dialog Title
                 alertDialog.setTitle("Get Ready");
-                // Setting Dialog Message
                 alertDialog.setMessage("This Board is " + categories.get(position).getCatName());
-                //alertDialog.setView(input);
-                // Setting Icon to Dialog
                 alertDialog.setIcon(R.drawable.card);
-
-                // Setting Positive "Yes" Button
                 alertDialog.setPositiveButton("YES",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // Write your code here to execute after dialog
                                 Intent in = new Intent(getActivity(), QuickPlay.class);
                                 in.putExtra("CatID", categories.get(position).getID());
                                 in.putExtra("GameName", categories.get(position).getCatName());
                                 startActivity(in);
                             }
                         });
-                // Showing Alert Message
                 alertDialog.show();
 
             }

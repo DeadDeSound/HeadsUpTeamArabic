@@ -36,6 +36,12 @@ public class Fragment_New extends Fragment {
     String BoardName;
 
     @Override
+    public void onStart() {
+        super.onStart();
+        ((MainMenuActivity) getActivity()).setCustomFlag(1);
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }

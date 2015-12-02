@@ -1,11 +1,13 @@
 package com.example.nezarsaleh.headsup1;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -28,6 +30,12 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+
+    public void setCustomFlag(int customFlag) {
+        CustomFlag = customFlag;
+    }
+
+    int CustomFlag = 0;
 
     private GoogleApiClient client;
 
@@ -102,11 +110,36 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment_Favorites fragment = new Fragment_Favorites();
-            fragmentTransaction.replace(R.id.fragment, fragment);
-            fragmentTransaction.commit();
+            if (CustomFlag == 0) {
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment_Favorites fragment = new Fragment_Favorites();
+                fragmentTransaction.replace(R.id.fragment, fragment);
+                fragmentTransaction.commit();
+            }else {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("ARE YOU SURE?");
+                alertDialog.setMessage("all your unsaved data will be erased, OK ?");
+                alertDialog.setIcon(R.drawable.card);
+                alertDialog.setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                fragmentManager = getSupportFragmentManager();
+                                fragmentTransaction = fragmentManager.beginTransaction();
+                                Fragment_Favorites fragment = new Fragment_Favorites();
+                                fragmentTransaction.replace(R.id.fragment, fragment);
+                                fragmentTransaction.commit();
+                                setCustomFlag(0);
+                            }
+                        });
+                alertDialog.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
         }
 
 
@@ -120,11 +153,36 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment_All fragment = new Fragment_All();
-            fragmentTransaction.replace(R.id.fragment, fragment);
-            fragmentTransaction.commit();
+            if (CustomFlag == 0) {
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment_All fragment = new Fragment_All();
+                fragmentTransaction.replace(R.id.fragment, fragment);
+                fragmentTransaction.commit();
+            }else {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("ARE YOU SURE?");
+                alertDialog.setMessage("all your unsaved data will be erased, OK ?");
+                alertDialog.setIcon(R.drawable.card);
+                alertDialog.setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                fragmentManager = getSupportFragmentManager();
+                                fragmentTransaction = fragmentManager.beginTransaction();
+                                Fragment_All fragment = new Fragment_All();
+                                fragmentTransaction.replace(R.id.fragment, fragment);
+                                fragmentTransaction.commit();
+                                setCustomFlag(0);
+                            }
+                        });
+                alertDialog.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
 
         }
 
@@ -147,11 +205,36 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
 
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            Fragment_Custom fragment = new Fragment_Custom();
-            fragmentTransaction.replace(R.id.fragment, fragment);
-            fragmentTransaction.commit();
+            if (CustomFlag == 0) {
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment_Custom fragment = new Fragment_Custom();
+                fragmentTransaction.replace(R.id.fragment, fragment);
+                fragmentTransaction.commit();
+            }else {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("ARE YOU SURE?");
+                alertDialog.setMessage("all your unsaved data will be erased, OK ?");
+                alertDialog.setIcon(R.drawable.card);
+                alertDialog.setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                fragmentManager = getSupportFragmentManager();
+                                fragmentTransaction = fragmentManager.beginTransaction();
+                                Fragment_Custom fragment = new Fragment_Custom();
+                                fragmentTransaction.replace(R.id.fragment, fragment);
+                                fragmentTransaction.commit();
+                                setCustomFlag(0);
+                            }
+                        });
+                alertDialog.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                        }
+                    });
+                alertDialog.show();
+            }
         }
 
         if (v == Settings_Relative) {
