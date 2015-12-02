@@ -258,7 +258,32 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if (v == Home_Relative) {
-            finish();
+            if (CustomFlag == 0) {
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment_Favorites fragment = new Fragment_Favorites();
+                fragmentTransaction.replace(R.id.fragment, fragment);
+                fragmentTransaction.commit();
+            }else {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+                alertDialog.setTitle("ARE YOU SURE?");
+                alertDialog.setMessage("all your unsaved data will be erased, OK ?");
+                alertDialog.setIcon(R.drawable.card);
+                alertDialog.setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                setCustomFlag(0);
+                            }
+                        });
+                alertDialog.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+            }
         }
     }
 
