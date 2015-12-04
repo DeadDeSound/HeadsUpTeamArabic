@@ -27,11 +27,11 @@ public class Versus_Test_2 extends AppCompatActivity {
         reg_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager1 = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
-                Fragment_New second_fr_2 = new Fragment_New();
-                fragmentTransaction1.replace(R.id.Fragment_Container_1,second_fr_2);
-                fragmentTransaction1.commit();
+//                FragmentManager fragmentManager1 = getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
+//                Fragment_New second_fr_2 = new Fragment_New();
+//                fragmentTransaction1.replace(R.id.Fragment_Container_1,second_fr_2);
+//                fragmentTransaction1.commit();
             }
         });
 

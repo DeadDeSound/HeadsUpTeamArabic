@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -126,17 +122,48 @@
 
     <ListView
         android:id="@+id/list_view"
-        android:layout_below="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/done"
+        android:layout_alignStart="@+id/done" />
+
+    <ListView
+        android:id="@+id/listView2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
         android:id="@+id/done"
-        android:layout_below="@+id/list_view"
-        android:layout_centerInParent="true" />
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="New Data"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/list_view"
+        android:layout_alignStart="@+id/list_view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Old Data"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/listView2"
+        android:layout_alignStart="@+id/listView2" />
+
 
 </RelativeLayout>
-</ScrollView>

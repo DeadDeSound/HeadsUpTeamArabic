@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="15dp">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="15dp"
+        android:text="Large Text" />
+
+    <Button
+        android:id="@+id/rm_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@android:color/holo_blue_light"
+        android:text="REMOVE"
+        android:layout_marginLeft="15dp"
+        android:textColor="#ffffff"
+        android:layout_alignTop="@+id/add_btn"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/add_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView4"
+        android:layout_marginBottom="15dp"
+        android:layout_toLeftOf="@+id/rm_btn"
+        android:layout_toStartOf="@+id/rm_btn"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="15dp"
+        android:text="ADD CARDS"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/play_cus_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/add_btn"
+        android:background="@android:color/holo_purple"
+        android:text="PLAY"
+        android:textColor="#ffffff"
+        android:layout_alignLeft="@+id/add_btn"
+        android:layout_alignStart="@+id/add_btn" />
+
+</RelativeLayout>

@@ -33,21 +33,6 @@ public class QuickPlay extends AppCompatActivity {
     RelativeLayout main_relative, intro_relative;
     Boolean result_shown = false;
     TextView timerTextView;
-//    long startTime = 0;
-
-    //runs without a timer by reporting this handler at the end of the runnable
-//    Handler timerHandler = new Handler();
-//    Runnable timerRunnable = new Runnable() {
-//        @Override
-//        public void run() {
-//            long millis = System.currentTimeMillis() - startTime;
-//            int seconds = (int) (millis / 1000);
-//            int minutes = seconds / 60;
-//            seconds = seconds % 60;
-//            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-//            timerHandler.postDelayed(this, 500);
-//        }
-//    };
 
     private class counterDown extends CountDownTimer {
 
@@ -114,11 +99,15 @@ public class QuickPlay extends AppCompatActivity {
         intro_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intro_relative.setVisibility(View.INVISIBLE);
-                result.setVisibility(View.VISIBLE);
-                result.setText(HELLOS.get(RANDOM.nextInt(HELLOS.size())));
-                final counterDown timer = new counterDown(60000, 1000);
-                timer.start();
+                if (HELLOS.size() != 0) {
+                    intro_relative.setVisibility(View.INVISIBLE);
+                    result.setVisibility(View.VISIBLE);
+                    result.setText(HELLOS.get(RANDOM.nextInt(HELLOS.size())));
+                    final counterDown timer = new counterDown(60000, 1000);
+                    timer.start();
+                }else {
+                    introText.setText("NO ENTITIES AVAILABLE !!");
+                }
             }
         });
 //        startTime = System.currentTimeMillis();
@@ -133,8 +122,10 @@ public class QuickPlay extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                result.setVisibility(View.VISIBLE);
-                                result.setText(sayHello());
+                                if (HELLOS.size() != 0) {
+                                    result.setVisibility(View.VISIBLE);
+                                    result.setText(sayHello());
+                                }
                             }
                         });
                     }

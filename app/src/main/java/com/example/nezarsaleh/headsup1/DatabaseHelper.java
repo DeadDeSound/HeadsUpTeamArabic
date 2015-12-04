@@ -6,10 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.jar.Attributes;
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
@@ -110,5 +106,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllFav() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("select * from "+CAT_TABLE_NAME + " where "+FAV_COLUMN_CAT_NAME + " like true",null);
+    }
+
+    public int removeCat(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(CAT_TABLE_NAME,ID_COLUMN_CAT_NAME + "=" + id,null);
     }
 }
