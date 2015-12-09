@@ -8,7 +8,6 @@
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,7 +45,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/howtoplay" />
+                    android:src="@drawable/coins" />
 
 
                 <TextView
@@ -58,7 +57,7 @@
                     android:layout_toLeftOf="@+id/Coins_Im"
                     android:layout_toStartOf="@+id/Coins_Im"
                     android:id="@+id/Coins"
-                    android:text="Coins"
+                    android:text="العملات"
                     android:textColor="@color/menu_color"
 
                     />
@@ -91,7 +90,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_toLeftOf="@+id/Home_Im"
                     android:layout_toStartOf="@+id/Home_Im"
-                    android:text="Home"
+                    android:text="الرئيسية"
                     android:textColor="@color/menu_color"
 
                     />
@@ -125,7 +124,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_toLeftOf="@+id/All_Im"
                     android:layout_toStartOf="@+id/All_Im"
-                    android:text="All"
+                    android:text="الجميع"
                     android:textColor="@color/menu_color"
 
                     />
@@ -160,7 +159,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_toLeftOf="@+id/Favorites_Im"
                     android:layout_toStartOf="@+id/Favorites_Im"
-                    android:text="Favorites"
+                    android:text="المفضلة"
                     android:textColor="@color/menu_color"
 
                     />
@@ -169,38 +168,38 @@
             </RelativeLayout>
 
 
-            <RelativeLayout
-                android:id="@+id/New_Relative"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/menu_item_off">
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/New_Relative"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:background="@color/menu_item_off">-->
 
-                <ImageView
-                    android:id="@+id/New_Im"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/howtoplay" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/New_Im"-->
+                    <!--android:layout_width="30dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_alignParentEnd="true"-->
+                    <!--android:layout_alignParentRight="true"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:src="@drawable/howtoplay" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_toLeftOf="@+id/New_Im"
-                    android:layout_toStartOf="@+id/New_Im"
-                    android:text="New"
-                    android:textColor="@color/menu_color"
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:layout_marginEnd="15dp"-->
+                    <!--android:layout_marginRight="15dp"-->
+                    <!--android:layout_toLeftOf="@+id/New_Im"-->
+                    <!--android:layout_toStartOf="@+id/New_Im"-->
+                    <!--android:text="New"-->
+                    <!--android:textColor="@color/menu_color"-->
 
-                    />
+                    <!--/>-->
 
 
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
 
             <RelativeLayout
@@ -228,7 +227,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_toLeftOf="@+id/Custom_Im"
                     android:layout_toStartOf="@+id/Custom_Im"
-                    android:text="Custom"
+                    android:text="بطاقاتك"
                     android:textColor="@color/menu_color"
 
                     />
@@ -262,9 +261,8 @@
                     android:layout_marginRight="15dp"
                     android:layout_toLeftOf="@+id/Settings_Im"
                     android:layout_toStartOf="@+id/Settings_Im"
-                    android:text="Settings"
+                    android:text="الإعدادات"
                     android:textColor="@color/menu_color"
-
                     />
 
 
@@ -296,7 +294,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_toLeftOf="@+id/Store_Im"
                     android:layout_toStartOf="@+id/Store_Im"
-                    android:text="Store"
+                    android:text="المتجر"
                     android:textColor="@color/menu_color"
 
                     />

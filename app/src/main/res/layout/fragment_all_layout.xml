@@ -4,7 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/new_Deck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00bcd4"
+        android:text="أضف خاصتك"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        />
+
     <GridView
+        android:layout_below="@+id/new_Deck"
         android:id="@+id/dick_grid"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

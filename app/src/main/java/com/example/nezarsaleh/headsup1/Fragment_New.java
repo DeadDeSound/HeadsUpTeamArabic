@@ -1,10 +1,12 @@
 package com.example.nezarsaleh.headsup1;
 
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,6 +112,7 @@ public class Fragment_New extends Fragment {
                         for (String item : Data2) {
                             Boolean result = MyDB.insertItems(item, BoardName, CatID);
                             if (result) {
+                                ((MainMenuActivity) getActivity()).setCustomFlag(0);
                                 Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
                                 fragmentManager = getActivity().getSupportFragmentManager();
                                 fragmentTransaction = fragmentManager.beginTransaction();
@@ -122,6 +125,28 @@ public class Fragment_New extends Fragment {
                         }
                     }else
                         Toast.makeText(getActivity(), "Adding Failed", Toast.LENGTH_SHORT).show();
+                }else {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                    alertDialog.setTitle("ARE YOU SURE?");
+                    alertDialog.setMessage("you have made no changes !!");
+                    alertDialog.setIcon(R.drawable.card);
+                    alertDialog.setPositiveButton("YES",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    fragmentManager = getActivity().getSupportFragmentManager();
+                                    fragmentTransaction = fragmentManager.beginTransaction();
+                                    Fragment_Custom fragment = new Fragment_Custom();
+                                    fragmentTransaction.replace(R.id.fragment, fragment);
+                                    fragmentTransaction.commit();
+                                }
+                            });
+                    alertDialog.setNegativeButton("No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                    alertDialog.show();
                 }
             }
         });

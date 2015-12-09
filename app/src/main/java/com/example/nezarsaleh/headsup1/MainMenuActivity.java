@@ -1,5 +1,6 @@
 package com.example.nezarsaleh.headsup1;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,7 +24,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
     RelativeLayout Home_Relative;
     RelativeLayout All_Relative;
     RelativeLayout Favorites_Relative;
-    RelativeLayout New_Relative;
+//    RelativeLayout New_Relative;
     RelativeLayout Custom_Relative;
     RelativeLayout Settings_Relative;
     RelativeLayout Store_Relative;
@@ -47,7 +50,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         Home_Relative = (RelativeLayout) findViewById(R.id.Home_Realative);
         All_Relative = (RelativeLayout) findViewById(R.id.All_Relative);
         Favorites_Relative = (RelativeLayout) findViewById(R.id.Favorites_Relative);
-        New_Relative = (RelativeLayout) findViewById(R.id.New_Relative);
+//        New_Relative = (RelativeLayout) findViewById(R.id.New_Relative);
         Custom_Relative = (RelativeLayout) findViewById(R.id.Custom_Relative);
         Settings_Relative = (RelativeLayout) findViewById(R.id.Settings_Relative);
         Store_Relative = (RelativeLayout) findViewById(R.id.Store_Realtive);
@@ -59,7 +62,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
         All_Relative.setOnClickListener(this);
         Favorites_Relative.setOnClickListener(this);
         Favorites_Relative.setOnClickListener(this);
-        New_Relative.setOnClickListener(this);
+//        New_Relative.setOnClickListener(this);
         Custom_Relative.setOnClickListener(this);
         Settings_Relative.setOnClickListener(this);
         Store_Relative.setOnClickListener(this);
@@ -105,7 +108,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             Favorites_Relative.setBackgroundResource(R.color.white);
 
             All_Relative.setBackgroundResource(R.color.menu_item_off);
-            New_Relative.setBackgroundResource(R.color.menu_item_off);
+//            New_Relative.setBackgroundResource(R.color.menu_item_off);
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
@@ -148,7 +151,7 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             All_Relative.setBackgroundResource(R.color.white);
 
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
-            New_Relative.setBackgroundResource(R.color.menu_item_off);
+//            New_Relative.setBackgroundResource(R.color.menu_item_off);
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
@@ -186,20 +189,20 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
         }
 
-        if (v == New_Relative) {
-            New_Relative.setBackgroundResource(R.color.white);
-
-            All_Relative.setBackgroundResource(R.color.menu_item_off);
-            Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
-            Custom_Relative.setBackgroundResource(R.color.menu_item_off);
-            Settings_Relative.setBackgroundResource(R.color.menu_item_off);
-            Store_Relative.setBackgroundResource(R.color.menu_item_off);
-        }
+//        if (v == New_Relative) {
+//            New_Relative.setBackgroundResource(R.color.white);
+//
+//            All_Relative.setBackgroundResource(R.color.menu_item_off);
+//            Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
+//            Custom_Relative.setBackgroundResource(R.color.menu_item_off);
+//            Settings_Relative.setBackgroundResource(R.color.menu_item_off);
+//            Store_Relative.setBackgroundResource(R.color.menu_item_off);
+//        }
 
         if (v == Custom_Relative) {
             Custom_Relative.setBackgroundResource(R.color.white);
 
-            New_Relative.setBackgroundResource(R.color.menu_item_off);
+//            New_Relative.setBackgroundResource(R.color.menu_item_off);
             All_Relative.setBackgroundResource(R.color.menu_item_off);
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
@@ -241,10 +244,73 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
             Settings_Relative.setBackgroundResource(R.color.white);
 
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
-            New_Relative.setBackgroundResource(R.color.menu_item_off);
+//            New_Relative.setBackgroundResource(R.color.menu_item_off);
             All_Relative.setBackgroundResource(R.color.menu_item_off);
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
             Store_Relative.setBackgroundResource(R.color.menu_item_off);
+
+            final Dialog dialog = new Dialog(MainMenuActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.setting_dialog);
+            final Button btn60 = (Button) dialog.findViewById(R.id.btn60);
+            final Button btn90 = (Button) dialog.findViewById(R.id.btn90);
+            final Button btn120 = (Button) dialog.findViewById(R.id.btn120);
+
+            final SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", 0);
+            final SharedPreferences.Editor editor = pref.edit();
+
+            int time = pref.getInt("Time",60);
+
+            if (time == 60000){
+                btn60.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btn90.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                btn120.setBackgroundColor(getResources().getColor(R.color.menu_color));
+            }else if (time == 90000){
+                btn60.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                btn90.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btn120.setBackgroundColor(getResources().getColor(R.color.menu_color));
+            }else if (time == 120000){
+                btn60.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                btn90.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                btn120.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            }
+
+            btn60.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    btn60.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    btn90.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                    btn120.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                    editor.putInt("Time", 60000);
+                    editor.apply();
+                    dialog.dismiss();
+                }
+            });
+
+            btn90.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    btn60.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                    btn90.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    btn120.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                    editor.putInt("Time", 90000);
+                    editor.apply();
+                    dialog.dismiss();
+                }
+            });
+
+            btn120.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    btn60.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                    btn90.setBackgroundColor(getResources().getColor(R.color.menu_color));
+                    btn120.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                    editor.putInt("Time", 120000);
+                    editor.apply();
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         }
 
         if (v == Store_Relative) {
@@ -252,18 +318,14 @@ public class MainMenuActivity extends AppCompatActivity implements View.OnClickL
 
             Settings_Relative.setBackgroundResource(R.color.menu_item_off);
             Custom_Relative.setBackgroundResource(R.color.menu_item_off);
-            New_Relative.setBackgroundResource(R.color.menu_item_off);
+//            New_Relative.setBackgroundResource(R.color.menu_item_off);
             All_Relative.setBackgroundResource(R.color.menu_item_off);
             Favorites_Relative.setBackgroundResource(R.color.menu_item_off);
         }
 
         if (v == Home_Relative) {
             if (CustomFlag == 0) {
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                Fragment_Favorites fragment = new Fragment_Favorites();
-                fragmentTransaction.replace(R.id.fragment, fragment);
-                fragmentTransaction.commit();
+                finish();
             }else {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
                 alertDialog.setTitle("ARE YOU SURE?");

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class QuickPlay extends AppCompatActivity {
 
     private static final Random RANDOM = new Random();
-    Button correct, pass;
+    Button correct, pass, Back;
     TextView result, introText;
 
     int CatID;
@@ -42,25 +42,25 @@ public class QuickPlay extends AppCompatActivity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            String hms = String.format("%02d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+            String hms = String.format("%02d", TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) );
             timerTextView.setText(hms);
         }
 
         @Override
         public void onFinish() {
             intro_relative.setVisibility(View.VISIBLE);
-            introText.setText("Time Out !! \n Correct :"+correctScore+"\n Pass :"+passScore);
-            SharedPreferences myPrefs = getApplicationContext().getSharedPreferences("myPrefs", 0);
-            SharedPreferences.Editor editor = myPrefs.edit();
-            int Coins = myPrefs.getInt("Coins",-1);
-            if (Coins != -1) {
-                editor.putInt("Coins", Coins + 10);
-                editor.apply();
-            }
+            introText.setText("Time Out !! \n Correct :"+correctScore+"\n Pass :"+passScore+"\n Tap To Play Again");
+//            SharedPreferences myPrefs = getApplicationContext().getSharedPreferences("myPrefs", 0);
+//            SharedPreferences.Editor editor = myPrefs.edit();
+//            int Coins = myPrefs.getInt("Coins",-1);
+//            if (Coins != -1) {
+//                editor.putInt("Coins", Coins + 10);
+//                editor.apply();
+//            }
             intro_relative.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    finish();
+                    recreate();
                 }
             });
         }
@@ -84,6 +84,7 @@ public class QuickPlay extends AppCompatActivity {
         }
         correct = (Button) findViewById(R.id.correct_btn);
         pass = (Button) findViewById(R.id.pass_btn);
+        Back = (Button) findViewById(R.id.btnBack);
         result = (TextView) findViewById(R.id.play_text);
         main_relative = (RelativeLayout) findViewById(R.id.qplay_relative);
         intro_relative = (RelativeLayout) findViewById(R.id.intro);
@@ -92,18 +93,29 @@ public class QuickPlay extends AppCompatActivity {
         main_relative.setBackgroundResource(android.R.color.holo_blue_light);
 
         result.setVisibility(View.INVISIBLE);
-        introText.setText("Tap To Play !!");
+        introText.setText("Tap When You Ready To Play !!");
 
 //        timerTextView.setText("00:03:00");
+
+        final SharedPreferences pref = getSharedPreferences("myPrefs", 0);
+
+
+        Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         intro_relative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (HELLOS.size() != 0) {
+                    int Time = pref.getInt("Time",60000);
                     intro_relative.setVisibility(View.INVISIBLE);
                     result.setVisibility(View.VISIBLE);
                     result.setText(HELLOS.get(RANDOM.nextInt(HELLOS.size())));
-                    final counterDown timer = new counterDown(60000, 1000);
+                    final counterDown timer = new counterDown(Time, 1000);
                     timer.start();
                 }else {
                     introText.setText("NO ENTITIES AVAILABLE !!");
